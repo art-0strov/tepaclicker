@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Счетчик кликов</title>
+    <style>
+        #image {
+            width: 300px; /* Установите желаемую ширину изображения */
+            transition: transform 0.5s; /* Плавное уменьшение изображения */
+		}
+		#counter {
+			color: white;
+			margin-left: 140px;
+		}
+    </style>
+</head>
+<body>
+
+<div>
+    <img id="image" src="https://github.com/art-0strov/art-0strov-site/blob/main/tepaclicker/1.png?raw=true" alt="Картинка" onclick="incrementCounter()">
+    <p><span id="counter">0</span></p>
+</div>
+
+<script>
+    let count = 0;
+
+    function incrementCounter() {
+        count++;
+        document.getElementById("counter").innerText = count;
+
+        // Уменьшение изображения
+        const img = document.getElementById("image");
+        img.style.transform = "scale(0.9)"; // Уменьшение на 10%
+        
+        // Восстановление размера через 0.5 секунды
+        setTimeout(() => {
+            img.style.transform = "scale(1)";
+        }, 100);
+		// Изменение изображения при достижении определенного количества кликов
+        if (count === 1000) { // Замените 5 на нужное количество кликов
+            img.src = "https://github.com/art-0strov/art-0strov-site/blob/main/tepaclicker/2.png?raw=true"; // Укажите новый путь к изображению
+        }
+        if (count === 2000) { // Замените 5 на нужное количество кликов
+            img.src = "https://github.com/art-0strov/art-0strov-site/blob/main/tepaclicker/3.png?raw=true"; // Укажите новый путь к изображению
+        }
+        if (count === 3000) { // Замените 5 на нужное количество кликов
+            img.src = "https://github.com/art-0strov/art-0strov-site/blob/main/tepaclicker/4.png?raw=true"; // Укажите новый путь к изображению
+        }
+        if (count === 4000) { // Замените 5 на нужное количество кликов
+            img.src = "https://github.com/art-0strov/art-0strov-site/blob/main/tepaclicker/5.png?raw=true"; // Укажите новый путь к изображению
+        }
+        if (count === 5000) { // Замените 5 на нужное количество кликов
+            img.src = "https://github.com/art-0strov/art-0strov-site/blob/main/tepaclicker/6.png?raw=true"; // Укажите новый путь к изображению
+        }
+    }
+</script>
+
+</body>
+</html>
