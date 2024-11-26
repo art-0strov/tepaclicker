@@ -1,2 +1,0 @@
-# tepaclicker
-tepaclicker
