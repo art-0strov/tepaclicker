@@ -9,12 +9,12 @@
 	body {
             font-family: Monaco; /* Основной шрифт страницы */
         }
-        .container {
+        .tepa-container {
             border: 2px solid gray; /* Тонкая серая рамка */
             border-radius: 20px; /* Закругленные углы */
             padding: 5px; /* Отступы внутри контейнера */
             background-color: transparent; /* Цвет фона контейнера */
-	    width: 200px;
+	    width: 200px !important; 
         }
         #image {
             width: 200px; /* Установите желаемую ширину изображения */
@@ -29,7 +29,7 @@
 <body>
 
 <div>
-    <div class="container">
+    <div class="tepa-container">
       <img id="image" src="https://github.com/art-0strov/art-0strov-site/blob/main/tepaclicker/1.png?raw=true" alt="Картинка" onclick="incrementCounter()">
       <p><span id="counter">0</span></p>
     </div>
