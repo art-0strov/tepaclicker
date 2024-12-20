@@ -6,7 +6,7 @@
     <title>Счетчик кликов с изменением шрифта</title>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap" rel="stylesheet"> <!-- Подключение шрифта -->
     <style>
-	body {
+		body {
             font-family: Monaco; /* Основной шрифт страницы */
         }
         .tepa-container {
@@ -14,29 +14,66 @@
             border-radius: 20px; /* Закругленные углы */
             padding: 5px; /* Отступы внутри контейнера */
             background-color: transparent; /* Цвет фона контейнера */
-	    width: 200px !important; 
+	    	width: 200px !important; 
         }
         #image {
             width: 200px; /* Установите желаемую ширину изображения */
             transition: transform 0.5s; /* Плавное уменьшение изображения */
-	}
-	#counter {
-		color: white;
-		margin-left: 95px;
-	}
+		}
+		#counter {
+			color: #f9f9f9;
+			margin-left: 95px;
+		}
+		#countdown {
+		    font-size: 20px; /* Размер шрифта для обратного отсчета */
+		    margin-top: 20px; /* Отступ сверху */
+		}
+		#modal {
+			background-color: #2c2c2c;
+			border: 1px solid black;
+			box-shadow: 8px 8px 8px 0px rgba(0, 0, 0, 0.5);
+			border-radius: 10px;
+			width: 160px;
+			height: 100px;
+			position: absolute;
+			top: 50px;
+			left: 30px;
+		}
+		.modal-footer {
+			position: absolute;
+			top: 70px;
+			left: 70px;
+		}
+		.modal-button {
+			background-color: #4d9fa7;
+			border-radius: 8px;
+		}
+		#modalText {
+			color: #f9f9f9;
+		}
+		
     </style>
 </head>
 <body>
 
-<div>
-    <div class="tepa-container">
+<div class="tepa-container">
       <img id="image" src="https://github.com/art-0strov/art-0strov-site/blob/main/tepaclicker/1.png?raw=true" alt="Картинка" onclick="incrementCounter()">
       <p><span id="counter">0</span></p>
-    </div>
+	  <p id="countdown"></p>
+	  <div id="modal">
+		  <div id="modalText"></div>
+		  <div class="modal-footer">
+			  <button class="modal-button" onclick="closeModal()">Ok</button>
+		  </div>
+      </div>
 </div>
+
 
 <script>
     let count = 0;
+	let modalEl = document.getElementById('modal')
+	let modalTextEl = document.getElementById('modalText')
+	closeModal()
 
     function incrementCounter() {
         count++;
@@ -50,6 +87,7 @@
         setTimeout(() => {
             img.style.transform = "scale(1)";
         }, 100);
+
 		// Изменение изображения при достижении определенного количества кликов
         if (count === 1000) { // Замените 5 на нужное количество кликов
             img.src = "https://github.com/art-0strov/art-0strov-site/blob/main/tepaclicker/2.png?raw=true"; // Укажите новый путь к изображению
@@ -66,7 +104,45 @@
         if (count === 5000) { // Замените 5 на нужное количество кликов
             img.src = "https://github.com/art-0strov/art-0strov-site/blob/main/tepaclicker/6.png?raw=true"; // Укажите новый путь к изображению
         }
+		
+		// Запуск обратного отсчета при достижении 100 кликов
+        if (count === 100) {
+            startCountdown();
+        }
     }
+
+    function startCountdown() {
+        const randomTime = Math.floor(Math.random() * (200 - 60 + 1)) + 60; // Случайное время от 60 до 200 секунд
+        let timeLeft = randomTime;
+        
+        // document.getElementById("countdown").innerText = `Обратный отсчет: ${timeLeft} секунд`;
+
+        countdownInterval = setInterval(() => {
+            timeLeft--;
+            // document.getElementById("countdown").innerText = `Обратный отсчет: ${timeLeft} секунд`;
+
+            if (timeLeft <= 0) {
+                clearInterval(countdownInterval);
+                showModal('Анти автокликер \nкупи ленивые вафли :)'); // Всплывающее окно
+                resetCountdown(); // Сбросить и перезапустить обратный отсчет
+            }
+        }, 1000);
+    }
+
+    function resetCountdown() {
+        count = 0; // Сброс счетчика кликов
+        document.getElementById("counter").innerText = count;
+        document.getElementById("countdown").innerText = ""; // Очистить текст обратного отсчета
+    }
+	
+	function showModal(text) {
+		modalEl.style.display = 'block'
+		modalTextEl.innerText = text
+	}
+	
+	function closeModal() {
+		modalEl.style.display = 'none'
+	}
 </script>
 
 </body>
