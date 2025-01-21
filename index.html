@@ -123,14 +123,14 @@
 
             if (timeLeft <= 0) {
                 clearInterval(countdownInterval);
-                showModal('Анти автокликер \nкупи ленивые вафли :)'); // Всплывающее окно
+                showModal('Анти автокликер \nПоделись игрой :)'); // Всплывающее окно
                 resetCountdown(); // Сбросить и перезапустить обратный отсчет
             }
         }, 1000);
     }
 
     function resetCountdown() {
-        count = 0; // Сброс счетчика кликов
+       // count = 0; // Сброс счетчика кликов
         document.getElementById("counter").innerText = count;
         document.getElementById("countdown").innerText = ""; // Очистить текст обратного отсчета
     }
